@@ -1,6 +1,15 @@
 # cs441-proj2-android
 CS441 Assignment 2 - Multi-screen App
 
+### To Do
+## pass values from DataEntries to other screens (Bundle?)
+## set up graphs for PieChart and RadarGraph
+## read more library documentation to learn how to customize
+
+
+
+### References
+
 # Graph Library:
 ## https://stackoverflow.com/questions/35238770/android-how-to-display-bargraph-in-android
 ## https://github.com/PhilJay/MPAndroidChart
@@ -8,7 +17,7 @@ CS441 Assignment 2 - Multi-screen App
 
 # Swiping:
 ## https://developer.android.com/training/gestures/detector#java
-I started here and got basic movement/down presses working, but didn't understand how I could check direction, 
+I started here and got basic movement/down presses working, but didn't understand how I could check direction,
 as it wasn't a function I could override.
 
 ## https://stackoverflow.com/questions/4139288/android-how-to-handle-right-to-left-swipe-gestures
