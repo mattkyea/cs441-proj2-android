@@ -21,3 +21,6 @@ https://stackoverflow.com/questions/4486034/get-root-view-from-current-activity
 Activities and Contexts
 https://stackoverflow.com/questions/9891360/getting-activity-from-context-in-android
 -how to get an activity from a context in constructed class
+
+https://stackoverflow.com/questions/28515049/android-content-context-getpackagename-on-a-null-object-reference
+-fixed bug with trying to pass context

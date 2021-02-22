@@ -1,26 +1,30 @@
 package com.example.assign2_multiplescreens;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 /*
  * I'm using this class to simplify listening for swipe events. I want to
- * be able to swipe on every page, which means each activity would need to
- * implement this class (which itself implements the code for measuring left
- * or right swipes) which seems like too much work.
+ * be able to swipe on every page, which means each activity will need to
+ * implement this class. I tried adding some globals and doing an indexing thing
+ * here to simplify what each screen had to do, but it got too complex.
  *
- * Instead, I'm going to have some variables in here to tell us what page we're on and
- * what page is next.
+ * So, this is a class that overrides the touch listener, and each screen will
+ * make an instance of this class to listen for swipes. The nested class SimpleSwipeGestureListener
+ * does the math needed to determine if it was left or right.
+ *
+ * https://developer.android.com/training/gestures/detector#java gave me a brief overview of the touch classes
+ *
+ * and https://stackoverflow.com/questions/4139288/android-how-to-handle-right-to-left-swipe-gestures makes up the bulk of what I've done here.
+ * I focused on understanding it rather than copy-pasting, but you can obviously see the similarities. Thus, I've commented my version to show
+ * that I know what is going on.
  */
 public class SwipeListener implements View.OnTouchListener {
 
     private final GestureDetector gestureDetector;
-    private AppCompatActivity[] activities;
 
     /*
      * Constructor for this class, which initializes gestureDetector. This will allow us to detect
@@ -28,23 +32,15 @@ public class SwipeListener implements View.OnTouchListener {
      */
     public SwipeListener(Context context) {
         gestureDetector = new GestureDetector(context, new SimpleSwipeGestureListener());
-        activities[0] = (MainActivity) context;
-        activities[1] = new MainActivity2();
-        Intent act_action = new Intent(activities[0], MainActivity2.class);
-        context.startActivity(act_action);
     }
 
     /*
      * The 2 classes we'll override in each activity to bring us to a different page.
-     * I might try to set up some indexing system to see what page we're on and move accordingly.
-     * This would allow me to implement these here, and not need to override them in each activity.
+     * We need to override in each activity because the swipe will bring us somewhere
+     * different depending on where we are. I tried an indexing thing but it was too complex.
      */
-    public void onSwipeLeft() {
-        System.out.println("ok");
-    }
-    public void onSwipeRight() {
-
-    }
+    public void onSwipeLeft() { }
+    public void onSwipeRight() { }
 
 
     public boolean onTouch(View v, MotionEvent event) {
