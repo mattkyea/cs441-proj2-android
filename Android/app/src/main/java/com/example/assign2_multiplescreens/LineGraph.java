@@ -16,14 +16,14 @@ import java.util.List;
 /*
  * Second screen, mostly a test for now
  */
-public class MainActivity2 extends AppCompatActivity {
+public class LineGraph extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_line_graph);
 
-    /*
+
         // in this example, a LineChart is initialized from xml
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
@@ -45,22 +45,30 @@ public class MainActivity2 extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate(); // refresh
-*/
+
 
         //I can't swipe while graph takes up entire screen, I'll look at that next (but that's why its commented out).
-        Intent act_action = new Intent(this, MainActivity.class);
-        act_action.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//again, nifty trick to restore old page, not make a new one
+
+
+        //intent for screen to left - DataEntry
+        Intent dataEntryIntent = new Intent(this, DataEntry.class);
+        dataEntryIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//again, nifty trick to restore old page, not make a new one
+
+        //intent for screen to right, BarGraph
+        Intent barGraphIntent = new Intent(this, BarGraph.class);
+        barGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
                 System.out.println("swiped left");
-                //System.out.println(x1.getText().toString());
+                startActivity(barGraphIntent);
             }
 
             @Override
             public void onSwipeRight() {
                 System.out.println("swiped right");
-                startActivity(act_action);
+                startActivity(dataEntryIntent);
             }
         });
 

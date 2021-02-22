@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Assign2MultipleScreens">
-        <activity android:name=".MainActivity2"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".RadarChart"></activity>
+        <activity android:name=".PieChart" />
+        <activity android:name=".BarGraph" />
+        <activity android:name=".LineGraph" />
+        <activity android:name=".DataEntry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
