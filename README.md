@@ -19,8 +19,5 @@ https://stackoverflow.com/questions/4486034/get-root-view-from-current-activity
 -How to get the view for the MainActivity, needed to call SwipeListener
 
 Activities and Contexts
-https://stackoverflow.com/questions/9891360/getting-activity-from-context-in-android
--how to get an activity from a context in constructed class
-
-https://stackoverflow.com/questions/28515049/android-content-context-getpackagename-on-a-null-object-reference
--fixed bug with trying to pass context
+https://stackoverflow.com/questions/18049284/how-to-go-to-an-already-existing-activity-from-a-different-one/18049394
+-how to open existing activity, not make a new one
