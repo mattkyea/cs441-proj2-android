@@ -3,7 +3,7 @@ CS441 Assignment 2 - Multi-screen App
 
 # To Do
 ### pass values from DataEntries to other screens (Bundle?)
-### set up graphs for PieChart and RadarGraph
+### write code to use pie and radar chart correctly (ranges), or swap with a different graph
 ### read more library documentation to learn how to customize
 
 
@@ -14,6 +14,7 @@ CS441 Assignment 2 - Multi-screen App
 ### https://stackoverflow.com/questions/35238770/android-how-to-display-bargraph-in-android
 ### https://github.com/PhilJay/MPAndroidChart
 ### https://weeklycoding.com/mpandroidchart-documentation/getting-started/
+### https://weeklycoding.com/mpandroidchart-documentation/setting-data/
 
 ## Swiping:
 ### https://developer.android.com/training/gestures/detector#java
