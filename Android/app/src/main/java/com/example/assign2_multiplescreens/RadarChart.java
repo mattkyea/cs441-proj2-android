@@ -10,6 +10,12 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
+import com.github.mikephil.charting.data.RadarEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +28,16 @@ public class RadarChart extends AppCompatActivity {
         setContentView(R.layout.activity_radar_chart);
 
         //graph code
-
+        com.github.mikephil.charting.charts.RadarChart radarChart = findViewById(R.id.chart);
+        List<RadarEntry> entries = new ArrayList<>();
+        entries.add(new RadarEntry(18.5f, "Green"));
+        entries.add(new RadarEntry(26.7f, "Yellow"));
+        entries.add(new RadarEntry(24.0f, "Red"));
+        entries.add(new RadarEntry(30.8f, "Blue"));
+        RadarDataSet set = new RadarDataSet(entries, "Election Results");
+        RadarData data = new RadarData(set);
+        radarChart.setData(data);
+        radarChart.invalidate(); // refresh
 
         //intent for screen to left - PieChart
         Intent pieChartIntent = new Intent(this, PieChart.class);
