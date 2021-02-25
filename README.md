@@ -30,3 +30,6 @@ How to get the view for the MainActivity, needed to call SwipeListener
 ## Activities and Contexts
 ### https://stackoverflow.com/questions/18049284/how-to-go-to-an-already-existing-activity-from-a-different-one/18049394
 How to open existing activity, not make a new one
+
+###https://stackoverflow.com/questions/768969/passing-a-bundle-on-startactivity
+How to pass info between activities

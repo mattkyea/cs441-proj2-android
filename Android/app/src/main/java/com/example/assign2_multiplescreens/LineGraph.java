@@ -23,19 +23,16 @@ public class LineGraph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph);
 
+        float[] xVals = getIntent().getExtras().getFloatArray("x values");
+        float[] yVals = getIntent().getExtras().getFloatArray("y values");
 
         // in this example, a LineChart is initialized from xml
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
-        //YourData[] dataObjects = ...;
-        Integer [] dataObjects = {1, 2, 3, 4};
-
         List<Entry> entries = new ArrayList<>();
-        int curr = 0;
-        for (Integer data : dataObjects) {
+        for (int i=0; i<xVals.length; i++) {
             // turn your data into Entry objects
-            entries.add(new Entry(curr, data));
-            curr++;
+            entries.add(new Entry(xVals[i], yVals[i]));
         }
 
         LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
@@ -45,10 +42,6 @@ public class LineGraph extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate(); // refresh
-
-
-        //I can't swipe while graph takes up entire screen, I'll look at that next (but that's why its commented out).
-
 
         //intent for screen to left - DataEntry
         Intent dataEntryIntent = new Intent(this, DataEntry.class);
