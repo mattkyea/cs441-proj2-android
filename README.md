@@ -2,8 +2,6 @@
 CS441 Assignment 2 - Multi-screen App
 
 # To Do
-### pass values from DataEntries to other screens (Bundle?)
-### write code to use pie and radar chart correctly (ranges), or swap with a different graph
 ### read more library documentation to learn how to customize
 
 
@@ -33,3 +31,7 @@ How to open existing activity, not make a new one
 
 ###https://stackoverflow.com/questions/768969/passing-a-bundle-on-startactivity
 How to pass info between activities
+
+## Constraints and Layouts
+###https://developer.android.com/training/constraint-layout
+I was completely lost until I found this, and even with it my button layout could use some work (a good challenge for next time).

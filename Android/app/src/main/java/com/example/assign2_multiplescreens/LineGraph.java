@@ -51,6 +51,11 @@ public class LineGraph extends AppCompatActivity {
         Intent barGraphIntent = new Intent(this, BarGraph.class);
         barGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
+        //send values to bar graph
+        //dataentry doesn't need
+        barGraphIntent.putExtra("x values", xVals);
+        barGraphIntent.putExtra("y values", yVals);
+
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {

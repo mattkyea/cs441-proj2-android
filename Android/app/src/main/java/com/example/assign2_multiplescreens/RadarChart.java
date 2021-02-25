@@ -28,13 +28,34 @@ public class RadarChart extends AppCompatActivity {
         setContentView(R.layout.activity_radar_chart);
 
         //graph code
+
+        float[] xVals = getIntent().getExtras().getFloatArray("x values");
+        float[] yVals = getIntent().getExtras().getFloatArray("y values");
+
+
+        //same as piechart - radarchart doesn't really make sense for (x,y) values
+        //so I'll find and map percentage in predefined ranges
         com.github.mikephil.charting.charts.RadarChart radarChart = findViewById(R.id.chart);
+
+        int[] numInRanges = new int[5];
+        for(float f: yVals){
+            if(f>=0 && f<10) numInRanges[0]++;
+            else if(f>=10 && f<50) numInRanges[1]++;
+            else if(f>=50 && f<100) numInRanges[2]++;
+            else if(f>=100 && f<500) numInRanges[3]++;
+            else numInRanges[4]++;
+        }
+
+
         List<RadarEntry> entries = new ArrayList<>();
-        entries.add(new RadarEntry(18.5f, "Green"));
-        entries.add(new RadarEntry(26.7f, "Yellow"));
-        entries.add(new RadarEntry(24.0f, "Red"));
-        entries.add(new RadarEntry(30.8f, "Blue"));
-        RadarDataSet set = new RadarDataSet(entries, "Election Results");
+        entries.add(new RadarEntry(numInRanges[0], "0-10"));
+        entries.add(new RadarEntry(numInRanges[1], "10-50"));
+        entries.add(new RadarEntry(numInRanges[2], "50-100"));
+        entries.add(new RadarEntry(numInRanges[3], "100-500"));
+        entries.add(new RadarEntry(numInRanges[4], ">500"));
+        RadarDataSet set = new RadarDataSet(entries, "Percent of Y-Values in Predefined Ranges");
+
+
         RadarData data = new RadarData(set);
         radarChart.setData(data);
         radarChart.invalidate(); // refresh
@@ -46,6 +67,9 @@ public class RadarChart extends AppCompatActivity {
         //intent for screen to right, DataEntry (i.e. back to start)
         Intent dataEntryIntent = new Intent(this, DataEntry.class);
         dataEntryIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+        pieChartIntent.putExtra("x values", xVals);
+        pieChartIntent.putExtra("y values", yVals);
 
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override

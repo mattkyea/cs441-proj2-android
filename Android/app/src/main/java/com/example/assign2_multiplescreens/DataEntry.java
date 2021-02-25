@@ -28,7 +28,6 @@ public class DataEntry extends AppCompatActivity {
         Intent lineGraphIntent = new Intent(this, LineGraph.class);
         lineGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-        Bundle lineGraphIntentExtras = lineGraphIntent.getExtras();
 
         //code to grab values, start passing around
 
@@ -52,10 +51,8 @@ public class DataEntry extends AppCompatActivity {
             public void onSwipeRight() {
                 System.out.println("swiped right");
                 readValues();
-                Bundle radarChartIntentExtras = new Bundle();
-                radarChartIntentExtras = radarChartIntent.getExtras();
-                radarChartIntentExtras.putFloatArray("x values",xVals );//x vals
-                radarChartIntentExtras.putFloatArray("y values", yVals);//y values
+                radarChartIntent.putExtra("x values", xVals);
+                radarChartIntent.putExtra("y values", yVals);
                 startActivity(radarChartIntent);
             }
         });
@@ -75,10 +72,6 @@ public class DataEntry extends AppCompatActivity {
         TextView y5 = (TextView) findViewById(R.id.y5);
 
         xVals[0] = Float.parseFloat(x1.getText().toString());
-        System.out.println(x1.getText());
-        System.out.println(x1.getText().toString());
-        System.out.println(Float.parseFloat(x1.getText().toString()));
-        System.out.println(xVals[0]);
         xVals[1] = Float.parseFloat(x2.getText().toString());
         xVals[2] = Float.parseFloat(x3.getText().toString());
         xVals[3] = Float.parseFloat(x4.getText().toString());

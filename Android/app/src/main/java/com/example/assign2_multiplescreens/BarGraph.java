@@ -24,19 +24,17 @@ public class BarGraph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_graph);
 
+
+        float[] xVals = getIntent().getExtras().getFloatArray("x values");
+        float[] yVals = getIntent().getExtras().getFloatArray("y values");
         //graph code
         // in this example, a LineChart is initialized from xml
         BarChart chart = (BarChart) findViewById(R.id.chart);
 
-        //YourData[] dataObjects = ...;
-        Integer [] dataObjects = {1, 2, 3, 4};
-
         List<BarEntry> entries = new ArrayList<>();
-        int curr = 0;
-        for (Integer data : dataObjects) {
+        for (int i=0; i<xVals.length; i++) {
             // turn your data into Entry objects
-            entries.add(new BarEntry(curr, data));
-            curr++;
+            entries.add(new BarEntry(xVals[i], yVals[i]));
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Label"); // add entries to dataset
@@ -55,6 +53,14 @@ public class BarGraph extends AppCompatActivity {
         //intent for screen to right, PieChart
         Intent pieChartIntent = new Intent(this, PieChart.class);
         pieChartIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+        //send values to both
+        //we need to still send to line graph because its possible to come FROM pie chart/other direction
+        lineGraphIntent.putExtra("x values", xVals);
+        lineGraphIntent.putExtra("y values", yVals);
+
+        pieChartIntent.putExtra("x values", xVals);
+        pieChartIntent.putExtra("y values", yVals);
 
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
