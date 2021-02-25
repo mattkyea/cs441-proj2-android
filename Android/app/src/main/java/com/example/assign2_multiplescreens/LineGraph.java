@@ -39,8 +39,12 @@ public class LineGraph extends AppCompatActivity {
         dataSet.setColor(0xFF000000);
         dataSet.setValueTextColor(0xFF000000);
 
+        dataSet.setValueTextSize(16f);
+
         LineData lineData = new LineData(dataSet);
+
         chart.setData(lineData);
+        chart.getDescription().setEnabled(false);
         chart.invalidate(); // refresh
 
         //intent for screen to left - DataEntry
@@ -59,13 +63,13 @@ public class LineGraph extends AppCompatActivity {
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
-                System.out.println("swiped left");
+                //System.out.println("swiped left");
                 startActivity(barGraphIntent);
             }
 
             @Override
             public void onSwipeRight() {
-                System.out.println("swiped right");
+                //System.out.println("swiped right");
                 startActivity(dataEntryIntent);
             }
         });

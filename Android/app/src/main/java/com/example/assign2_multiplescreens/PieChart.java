@@ -3,6 +3,7 @@ package com.example.assign2_multiplescreens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -55,20 +56,25 @@ public class PieChart extends AppCompatActivity {
         entries.add(new PieEntry(numInRanges[2], "50-100"));
         entries.add(new PieEntry(numInRanges[3], "100-500"));
         entries.add(new PieEntry(numInRanges[4], ">500"));
-        PieDataSet set = new PieDataSet(entries, "Percent of Y-Values in Predefined Ranges");
+        PieDataSet set = new PieDataSet(entries, "");
+        set.setColors(Color.rgb(0,0,255), Color.rgb(0,255,0), Color.rgb(255,0,0), Color.rgb(255,255,0), Color.rgb(255,0,255));
 
+
+        set.setValueTextSize(16f);
 
         PieData data = new PieData(set);
+        data.setValueTextSize(16f);
         pieChart.setData(data);
+        pieChart.setUsePercentValues(true);
+        pieChart.setCenterText("Percent of Y-Values in Predefined Ranges");
+        pieChart.getDescription().setEnabled(false);
         pieChart.invalidate(); // refresh
 
         //intent for screen to left - BarGraph
         Intent barGraphIntent = new Intent(this, BarGraph.class);
-        barGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//again, nifty trick to restore old page, not make a new one
 
         //intent for screen to right, RadarChart
         Intent radarChartIntent = new Intent(this, RadarChart.class);
-        radarChartIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
         barGraphIntent.putExtra("x values", xVals);
         barGraphIntent.putExtra("y values", yVals);
@@ -79,13 +85,13 @@ public class PieChart extends AppCompatActivity {
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
-                System.out.println("swiped left");
+                //System.out.println("swiped left");
                 startActivity(radarChartIntent);
             }
 
             @Override
             public void onSwipeRight() {
-                System.out.println("swiped right");
+                //System.out.println("swiped right");
                 startActivity(barGraphIntent);
             }
         });

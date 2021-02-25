@@ -3,10 +3,12 @@ package com.example.assign2_multiplescreens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -33,40 +35,39 @@ public class RadarChart extends AppCompatActivity {
         float[] yVals = getIntent().getExtras().getFloatArray("y values");
 
 
-        //same as piechart - radarchart doesn't really make sense for (x,y) values
-        //so I'll find and map percentage in predefined ranges
         com.github.mikephil.charting.charts.RadarChart radarChart = findViewById(R.id.chart);
 
-        int[] numInRanges = new int[5];
-        for(float f: yVals){
-            if(f>=0 && f<10) numInRanges[0]++;
-            else if(f>=10 && f<50) numInRanges[1]++;
-            else if(f>=50 && f<100) numInRanges[2]++;
-            else if(f>=100 && f<500) numInRanges[3]++;
-            else numInRanges[4]++;
+        List<RadarEntry> entries = new ArrayList<>();
+        for (int i=0; i<xVals.length; i++) {
+            // turn your data into Entry objects
+            entries.add(new RadarEntry(yVals[i]));
+            System.out.println(xVals[i] +","+yVals[i]);
         }
 
+        RadarDataSet set = new RadarDataSet(entries, "Data");
+        set.setColor(Color.rgb(255,0,0));
 
-        List<RadarEntry> entries = new ArrayList<>();
-        entries.add(new RadarEntry(numInRanges[0], "0-10"));
-        entries.add(new RadarEntry(numInRanges[1], "10-50"));
-        entries.add(new RadarEntry(numInRanges[2], "50-100"));
-        entries.add(new RadarEntry(numInRanges[3], "100-500"));
-        entries.add(new RadarEntry(numInRanges[4], ">500"));
-        RadarDataSet set = new RadarDataSet(entries, "Percent of Y-Values in Predefined Ranges");
-
+        set.setValueTextSize(16f);
 
         RadarData data = new RadarData(set);
         radarChart.setData(data);
+
+        radarChart.setWebColor(Color.rgb(255,0,0));
+        radarChart.setWebAlpha(255);
+        radarChart.setWebColorInner(Color.rgb(0,0,255));
+
+        radarChart.setDrawWeb(true);
+        radarChart.getDescription().setEnabled(false);
         radarChart.invalidate(); // refresh
+
 
         //intent for screen to left - PieChart
         Intent pieChartIntent = new Intent(this, PieChart.class);
-        pieChartIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//again, nifty trick to restore old page, not make a new one
 
         //intent for screen to right, DataEntry (i.e. back to start)
         Intent dataEntryIntent = new Intent(this, DataEntry.class);
-        dataEntryIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //this line lets us open the existing activity (i.e. values will persist when we return to it)
+        dataEntryIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//found this at https://stackoverflow.com/questions/18049284/how-to-go-to-an-already-existing-activity-from-a-different-one/18049394
 
         pieChartIntent.putExtra("x values", xVals);
         pieChartIntent.putExtra("y values", yVals);
@@ -74,13 +75,13 @@ public class RadarChart extends AppCompatActivity {
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
-                System.out.println("swiped left");
+                //System.out.println("swiped left");
                 startActivity(dataEntryIntent);
             }
 
             @Override
             public void onSwipeRight() {
-                System.out.println("swiped right");
+                //System.out.println("swiped right");
                 startActivity(pieChartIntent);
             }
         });

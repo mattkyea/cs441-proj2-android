@@ -13,6 +13,12 @@ CS441 Assignment 2 - Multi-screen App
 ### https://github.com/PhilJay/MPAndroidChart
 ### https://weeklycoding.com/mpandroidchart-documentation/getting-started/
 ### https://weeklycoding.com/mpandroidchart-documentation/setting-data/
+### https://weeklycoding.com/mpandroidchart-documentation/general-settings-styling/
+### https://weeklycoding.com/mpandroidchart-documentation/chart-specific-settings-styling/
+### https://stackoverflow.com/questions/37468918/setting-the-pie-slice-colors-in-mpandroidchart
+Coloring for pie graph
+### https://stackoverflow.com/questions/27566916/how-to-remove-description-from-chart-in-mpandroidchart
+Small description for graph I couldn't figure out how to remove
 
 ## Swiping:
 ### https://developer.android.com/training/gestures/detector#java

@@ -37,22 +37,25 @@ public class BarGraph extends AppCompatActivity {
             entries.add(new BarEntry(xVals[i], yVals[i]));
         }
 
-        BarDataSet dataSet = new BarDataSet(entries, "Label"); // add entries to dataset
+        BarDataSet dataSet = new BarDataSet(entries, "Data"); // add entries to dataset
         dataSet.setColor(0xFF000000);
         dataSet.setValueTextColor(0xFF000000);
+        dataSet.setValueTextSize(16f);
 
         BarData lineData = new BarData(dataSet);
+        lineData.setValueTextSize(16f);
         chart.setData(lineData);
+        chart.getDescription().setEnabled(false);
         chart.invalidate(); // refresh
 
 
         //intent for screen to left - LineGraph
         Intent lineGraphIntent = new Intent(this, LineGraph.class);
         lineGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//again, nifty trick to restore old page, not make a new one
+        //we don't want to restore page for the graphs though, so that we redraw in case of data change
 
         //intent for screen to right, PieChart
         Intent pieChartIntent = new Intent(this, PieChart.class);
-        pieChartIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
         //send values to both
         //we need to still send to line graph because its possible to come FROM pie chart/other direction
@@ -65,13 +68,13 @@ public class BarGraph extends AppCompatActivity {
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
-                System.out.println("swiped left");
+                //System.out.println("swiped left");
                 startActivity(pieChartIntent);
             }
 
             @Override
             public void onSwipeRight() {
-                System.out.println("swiped right");
+                //System.out.println("swiped right");
                 startActivity(lineGraphIntent);
             }
         });

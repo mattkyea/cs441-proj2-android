@@ -20,36 +20,29 @@ public class DataEntry extends AppCompatActivity {
 
         //intent for screen to left - RadarChart
         Intent radarChartIntent = new Intent(this, RadarChart.class);
-        //this line lets us open the existing activity (i.e. values will persist when we return to it)
-        radarChartIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);//found this at https://stackoverflow.com/questions/18049284/how-to-go-to-an-already-existing-activity-from-a-different-one/18049394
-
 
         //repeat for screen to right - LineGraph
         Intent lineGraphIntent = new Intent(this, LineGraph.class);
-        lineGraphIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
 
         //code to grab values, start passing around
-
 
         //make new SwipeListener to override what to do on left and right at this screen
         findViewById(android.R.id.content).getRootView().setOnTouchListener(new SwipeListener(this) {
             @Override
             public void onSwipeLeft() {
                 //print val in x1 and go to new screen
-                System.out.println("swiped left");
+                //.out.println("swiped left");
                 readValues();
                 lineGraphIntent.putExtra("x values", xVals);
                 lineGraphIntent.putExtra("y values", yVals);
-                // lineGraphIntentExtras.putFloatArray("x values", xVals);//x vals
-               // lineGraphIntentExtras.putFloatArray("y values", yVals);//y values
                 startActivity(lineGraphIntent);//there's a version with a "Bundle" - can we use to pass values?
 
             }
 
             @Override
             public void onSwipeRight() {
-                System.out.println("swiped right");
+                //System.out.println("swiped right");
                 readValues();
                 radarChartIntent.putExtra("x values", xVals);
                 radarChartIntent.putExtra("y values", yVals);
@@ -60,7 +53,7 @@ public class DataEntry extends AppCompatActivity {
 
     public void readValues(){
         TextView x1 = (TextView) findViewById(R.id.x1);
-        TextView x2 = (TextView) findViewById(R.id.x3);
+        TextView x2 = (TextView) findViewById(R.id.x2);
         TextView x3 = (TextView) findViewById(R.id.x3);
         TextView x4 = (TextView) findViewById(R.id.x4);
         TextView x5 = (TextView) findViewById(R.id.x5);
