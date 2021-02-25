@@ -35,7 +35,7 @@ public class LineGraph extends AppCompatActivity {
             entries.add(new Entry(xVals[i], yVals[i]));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        LineDataSet dataSet = new LineDataSet(entries, "Data"); // add entries to dataset
         dataSet.setColor(0xFF000000);
         dataSet.setValueTextColor(0xFF000000);
 
