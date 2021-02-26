@@ -31,9 +31,9 @@ How to get the view for the MainActivity, needed to call SwipeListener
 ### https://stackoverflow.com/questions/18049284/how-to-go-to-an-already-existing-activity-from-a-different-one/18049394
 How to open existing activity, not make a new one
 
-###https://stackoverflow.com/questions/768969/passing-a-bundle-on-startactivity
+### https://stackoverflow.com/questions/768969/passing-a-bundle-on-startactivity
 How to pass info between activities
 
 ## Constraints and Layouts
-###https://developer.android.com/training/constraint-layout
+### https://developer.android.com/training/constraint-layout
 I was completely lost until I found this, and even with it my button layout could use some work (a good challenge for next time).
